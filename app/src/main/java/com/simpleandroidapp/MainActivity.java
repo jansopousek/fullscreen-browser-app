@@ -29,5 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://192.168.0.101:5000");
+
+        ViewCompat.setOnApplyWindowInsetsListener(webView, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            view.setPadding(0, systemBars.top, 0, 0);
+            return insets;
+        });
     }
 }
