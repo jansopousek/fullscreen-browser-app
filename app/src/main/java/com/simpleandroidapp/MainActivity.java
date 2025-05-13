@@ -1,6 +1,7 @@
 package com.simpleandroidapp;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
