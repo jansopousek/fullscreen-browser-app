@@ -15,10 +15,11 @@ import androidx.core.app.NotificationCompat;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
-import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 
 public class AlarmService extends Service {
 
@@ -54,12 +55,14 @@ public class AlarmService extends Service {
                 }
 
                 @Override
-                public void messageArrived(String topic, MqttMessage message) {
+                public void messageArrived(String topic, org.eclipse.paho.client.mqttv3.MqttMessage message) throws Exception {
                     showAlarmNotification(topic, message.toString());
                 }
 
                 @Override
-                public void deliveryComplete(IMqttToken token) {}
+                public void deliveryComplete(org.eclipse.paho.client.mqttv3.IMqttDeliveryToken token) {
+                    // nothing to do
+                }
             });
 
             client.connect(opts, null, new IMqttActionListener() {
